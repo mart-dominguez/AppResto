@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">AppResto</string>
     <string name="action_settings">Settings</string>
-    <string name="action_altaplato">Nuevo Plato</string>
+    <string name="action_plato">Nuevo Plato</string>
+    <string name="action_carta">Ver Carta</string>
     <string name="action_menu">Menu</string>
 </resources>
