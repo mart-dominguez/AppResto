@@ -1,10 +1,12 @@
 package cursofyb.test.appresto.modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by martdominguez on 29/06/2017.
  */
 
-public class Plato {
+public class Plato implements Serializable{
     private static Integer ID_PLATO=0;
     private Integer id;
     private String nombre;

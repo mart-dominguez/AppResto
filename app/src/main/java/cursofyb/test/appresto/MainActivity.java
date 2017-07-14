@@ -1,5 +1,6 @@
 package cursofyb.test.appresto;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -20,10 +22,12 @@ import cursofyb.test.appresto.modelo.Plato;
 import cursofyb.test.appresto.modelo.TipoPlato;
 
 public class MainActivity extends AppCompatActivity {
+    private final String LOG_D="MAIN_PLATOS_LOGGER";
+
 
     private Spinner tipoPlato;
     private ArrayAdapter<TipoPlato> adaptadorTipoPlato;
-    private ArrayList<Plato> listaPlatos;
+    public static ArrayList<Plato> listaPlatos = new ArrayList<>();
     private EditText nombre;
     private EditText precio;
     private EditText descripcion;
@@ -53,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         this.precio  = (EditText) findViewById(R.id.txtPrecio);
         this.descripcion = (EditText) findViewById(R.id.txtDescripcion);;
         this.btnGuardar = (Button) findViewById(R.id.btnGuardar);
-        this.btnNuevo = (Button) findViewById(R.id.btnGuardar);
+        this.btnNuevo = (Button) findViewById(R.id.btnNuevo);
         this.btnCancelar= (Button) findViewById(R.id.btnCancelar);
 
         tipoPlato = (Spinner) findViewById(R.id.cmbTipoPlato);
@@ -67,9 +71,23 @@ public class MainActivity extends AppCompatActivity {
                     platoNuevo.setDescripcion(descripcion.getText().toString());
                     platoNuevo.setNombre(nombre.getText().toString());
                     platoNuevo.setPrecio(Double.parseDouble(precio.getText().toString()));
-                    listaPlatos.add(platoNuevo);
+                    //listaPlatos.add(platoNuevo);
+                    Toast.makeText(MainActivity.this,"Plato agreagado exitosamente",Toast.LENGTH_LONG).show();
+                    Intent i = getIntent();
+                    // Le metemos el resultado que queremos mandar a la
+                    // actividad principal.
+                    i.putExtra("PLATO", platoNuevo);
+                    // Establecemos el resultado, y volvemos a la actividad
+                    // principal. La variable que introducimos en primer lugar
+                    // "RESULT_OK" es de la propia actividad, no tenemos que
+                    // declararla nosotros.
+                    setResult(RESULT_OK, i);
+
+                    // Finalizamos la Activity para volver a la anterior
+                    finish();
                 }
                 limpiarForm();
+                habilitar(false);
             }
         });
 
@@ -78,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 platoNuevo = new Plato();
                 flagPlatoNuevo=true;
+                habilitar(true);
             }
         });
 
@@ -87,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
                 limpiarForm();
             }
         });
+        this.limpiarForm();
+        habilitar(false);
     };
 
     private void limpiarForm(){
@@ -95,7 +116,16 @@ public class MainActivity extends AppCompatActivity {
         descripcion.setText("");
         nombre.setText("");
         precio.setText("0.0");
+    }
 
+    private void habilitar(boolean flag){
+        descripcion.setEnabled(flag);
+        nombre.setEnabled(flag);
+        precio.setEnabled(flag);
+        tipoPlato.setEnabled(flag);
+        btnGuardar.setEnabled(flag);
+        btnCancelar.setEnabled(flag);
+        btnNuevo.setEnabled(!flag);
     }
 
     private AdapterView.OnItemSelectedListener cmbTipoPlatoListener = new AdapterView.OnItemSelectedListener() {
@@ -139,6 +169,9 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_carta) {
+            Intent i = new Intent(this,ListaPlatos.class);
+            //i.putExtra("listaPlatos",listaPlatos);
+            startActivity(i);
             return true;
         }
 
@@ -150,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private TipoPlato[] obtenerListaPlato(){
+    public static TipoPlato[] obtenerListaPlato(){
         TipoPlato[] arreglo = new TipoPlato[5];
         arreglo[0]=new TipoPlato("Entrada");
         arreglo[1]=new TipoPlato("Principal");

@@ -1,10 +1,12 @@
 package cursofyb.test.appresto.modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by martdominguez on 29/06/2017.
  */
 
-public class TipoPlato {
+public class TipoPlato implements Serializable {
     private static Integer ID_TIPO_PLATO=1;
     private Integer id;
 
@@ -29,10 +31,12 @@ public class TipoPlato {
 
     @Override
     public String toString() {
-        return "TipoPlato{" +
+        return this.nombre;
+        /*"TipoPlato{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                '}';
+                '}';*/
+
     }
 
     @Override
