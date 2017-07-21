@@ -52,7 +52,21 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
+        listaPlatos.add(new Plato("plato 1","rico ",obtenerListaPlato()[1],99.9));
+        listaPlatos.add(new Plato("plato 2","rico ",obtenerListaPlato()[0],43.9));
+        listaPlatos.add(new Plato("plato 3","rico ",obtenerListaPlato()[1],75.9));
+        listaPlatos.add(new Plato("plato 4","rico ",obtenerListaPlato()[2],89.9));
+        listaPlatos.add(new Plato("plato 5","rico ",obtenerListaPlato()[0],48.9));
+        listaPlatos.add(new Plato("plato 6","rico ",obtenerListaPlato()[3],36.9));
+        listaPlatos.add(new Plato("plato 7","rico ",obtenerListaPlato()[1],258.9));
+        listaPlatos.add(new Plato("plato 8","rico ",obtenerListaPlato()[0],20.9));
+        listaPlatos.add(new Plato("plato 9","rico ",obtenerListaPlato()[0],15.9));
+        listaPlatos.add(new Plato("plato 10","rico ",obtenerListaPlato()[2],10.9));
+        listaPlatos.add(new Plato("plato 11","rico ",obtenerListaPlato()[0],82.9));
+        listaPlatos.add(new Plato("plato 12","rico ",obtenerListaPlato()[1],10.9));
+        listaPlatos.add(new Plato("plato 13","rico ",obtenerListaPlato()[0],42.9));
+        listaPlatos.add(new Plato("plato 14","rico ",obtenerListaPlato()[2],16.9));
+        listaPlatos.add(new Plato("plato 15","rico ",obtenerListaPlato()[3],11.9));
         this.nombre = (EditText) findViewById(R.id.txtNombrePlato);
         this.precio  = (EditText) findViewById(R.id.txtPrecio);
         this.descripcion = (EditText) findViewById(R.id.txtDescripcion);;

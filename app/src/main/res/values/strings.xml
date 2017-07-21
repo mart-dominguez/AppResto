@@ -4,4 +4,5 @@
     <string name="action_plato">Nuevo Plato</string>
     <string name="action_carta">Ver Carta</string>
     <string name="action_menu">Menu</string>
+    <string name="title_activity_pagar">Pagar</string>
 </resources>
